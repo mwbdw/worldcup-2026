@@ -146,6 +146,9 @@ body {
 .standing-chip.rank1 { border-color: var(--gold); background: rgba(245,197,24,.1); }
 .standing-chip.rank2 { border-color: #aaa; }
 .standing-chip.rank3 { border-color: #cd7f32; }
+.standing-chip.mine { border-color: var(--blue); }
+.pts-editable { cursor: pointer; }
+.pts-editable:hover { opacity: .75; }
 
 .header-user {
   display: flex;

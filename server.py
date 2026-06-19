@@ -397,15 +397,46 @@ def api_predict():
         return jsonify(error='预测比分无效'), 400
 
     with engine.begin() as c:
+        match = c.execute(text('SELECT * FROM matches WHERE id = :id'), {'id': match_id}).mappings().first()
+        new_pts = None
+        if match and match['home_score'] is not None:
+            new_pts = calc_points(match['home_score'], match['away_score'], h, a)
+
+        old_pred = c.execute(
+            text('SELECT points FROM predictions WHERE user_id = :uid AND match_id = :mid'),
+            {'uid': session['user_id'], 'mid': match_id}
+        ).mappings().first()
+        old_pts = old_pred['points'] if old_pred else None
+
+        # 积分差值更新
+        delta = (new_pts or 0) - (old_pts or 0)
+        if delta != 0:
+            c.execute(text('UPDATE users SET total_points = total_points + :d WHERE id = :id'),
+                      {'d': delta, 'id': session['user_id']})
+
         c.execute(text("""
-            INSERT INTO predictions (user_id, match_id, pred_home, pred_away)
-            VALUES (:uid, :mid, :ph, :pa)
+            INSERT INTO predictions (user_id, match_id, pred_home, pred_away, points)
+            VALUES (:uid, :mid, :ph, :pa, :pts)
             ON CONFLICT(user_id, match_id) DO UPDATE SET
                 pred_home = excluded.pred_home,
                 pred_away = excluded.pred_away,
-                points = CASE WHEN predictions.points IS NULL THEN NULL ELSE predictions.points END
-            WHERE predictions.points IS NULL
-        """), {'uid': session['user_id'], 'mid': match_id, 'ph': h, 'pa': a})
+                points = excluded.points
+        """), {'uid': session['user_id'], 'mid': match_id, 'ph': h, 'pa': a, 'pts': new_pts})
+    return jsonify(ok=True)
+
+
+@app.post('/api/set-points')
+@require_auth
+def api_set_points():
+    data = request.get_json(force=True, silent=True) or {}
+    try:
+        pts = int(data.get('points'))
+        if pts < 0:
+            raise ValueError
+    except (ValueError, TypeError):
+        return jsonify(error='积分无效'), 400
+    run('UPDATE users SET total_points = :pts WHERE id = :id',
+        {'pts': pts, 'id': session['user_id']})
     return jsonify(ok=True)
 
 

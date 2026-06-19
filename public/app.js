@@ -85,14 +85,33 @@ async function loadStandings() {
   try {
     const { standings } = await api('/api/standings');
     const bar = document.getElementById('standings-bar');
-    bar.innerHTML = standings.map((s, i) => `
-      <div class="standing-chip rank${i + 1}">
-        <span class="rank">#${i + 1}</span>
-        <span class="name">${s.display_name}</span>
-        <span class="pts">${s.total_points}分</span>
-      </div>
-    `).join('');
+    bar.innerHTML = standings.map((s, i) => {
+      const isMe = s.id === S.user?.id;
+      const ptsHtml = isMe
+        ? `<span class="pts pts-editable" onclick="editMyPoints(${s.total_points})" title="点击修改积分">${s.total_points}分 ✏️</span>`
+        : `<span class="pts">${s.total_points}分</span>`;
+      return `
+        <div class="standing-chip rank${i + 1}${isMe ? ' mine' : ''}">
+          <span class="rank">#${i + 1}</span>
+          <span class="name">${s.display_name}</span>
+          ${ptsHtml}
+        </div>`;
+    }).join('');
   } catch (_) {}
+}
+
+async function editMyPoints(current) {
+  const val = prompt(`修改你的总积分（当前 ${current} 分）`, current);
+  if (val === null) return;
+  const pts = parseInt(val);
+  if (isNaN(pts) || pts < 0) { toast('请输入有效积分', 'error'); return; }
+  try {
+    await api('/api/set-points', { method: 'POST', body: JSON.stringify({ points: pts }) });
+    toast('积分已更新 ✓');
+    await loadStandings();
+  } catch (err) {
+    toast(err.message, 'error');
+  }
 }
 
 // ── Match Days ─────────────────────────────────────────────────────────────
@@ -312,7 +331,7 @@ function renderPredTable(data) {
       const predCells = players.map(player => {
         const pred = predMap[m.id]?.[player.id];
         const isMe = player.id === S.user?.id;
-        const canEdit = isMe && !m.settled;
+        const canEdit = isMe;
 
         if (canEdit) {
           const curH = pred ? pred.pred_home : '';
