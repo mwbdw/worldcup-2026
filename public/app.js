@@ -340,12 +340,13 @@ function renderPredTable(data) {
             <td class="pred-cell">
               <div class="pred-editable">
                 <input type="number" class="pred-inp" id="inp-h-${m.id}" value="${curH}" min="0" max="30" placeholder="0"
-                  onkeydown="handlePredKey(event,${m.id})">
+                  onkeydown="handlePredKey(event,${m.id})"
+                  onblur="autoSavePred(${m.id})">
                 <span class="pred-sep">:</span>
                 <input type="number" class="pred-inp" id="inp-a-${m.id}" value="${curA}" min="0" max="30" placeholder="0"
-                  onkeydown="handlePredKey(event,${m.id})">
+                  onkeydown="handlePredKey(event,${m.id})"
+                  onblur="autoSavePred(${m.id})">
               </div>
-              <button class="pred-save-btn" onclick="savePred(${m.id})">保存</button>
             </td>
           `;
         }
@@ -385,7 +386,19 @@ function renderPredTable(data) {
 
 // ── Predict ────────────────────────────────────────────────────────────────
 function handlePredKey(e, matchId) {
-  if (e.key === 'Enter') savePred(matchId);
+  if (e.key === 'Enter') {
+    e.target.blur(); // 触发 onblur 自动保存
+  }
+}
+
+async function autoSavePred(matchId) {
+  const hInp = document.getElementById(`inp-h-${matchId}`);
+  const aInp = document.getElementById(`inp-a-${matchId}`);
+  if (!hInp || !aInp) return;
+  const h = hInp.value.trim();
+  const a = aInp.value.trim();
+  if (h === '' || a === '') return; // 两格都填才保存
+  await savePred(matchId);
 }
 
 async function savePred(matchId) {
@@ -394,17 +407,13 @@ async function savePred(matchId) {
   if (!hInp || !aInp) return;
   const h = hInp.value.trim();
   const a = aInp.value.trim();
-  if (h === '' || a === '') {
-    toast('请填写主客队比分', 'error');
-    return;
-  }
+  if (h === '' || a === '') return;
   try {
     await api('/api/predict', {
       method: 'POST',
       body: JSON.stringify({ match_id: matchId, pred_home: parseInt(h), pred_away: parseInt(a) }),
     });
-    toast('预测已保存 ✓');
-    // reload day data silently
+    toast('已保存 ✓');
     const data = await api(`/api/day/${S.currentDate}`);
     S.dayData = data;
     renderDay(data);
