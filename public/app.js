@@ -216,13 +216,42 @@ function renderMatchList(data) {
   }).join('');
 }
 
+// ── Mobile Tab Switch ──────────────────────────────────────────────────────
+function switchTab(tab) {
+  const matchPanel = document.getElementById('match-panel');
+  const predPanel  = document.querySelector('.pred-panel');
+  const tabMatch   = document.getElementById('tab-match');
+  const tabPred    = document.getElementById('tab-pred');
+  if (tab === 'match') {
+    matchPanel.classList.remove('mobile-hidden');
+    predPanel.classList.add('mobile-hidden');
+    tabMatch.classList.add('active');
+    tabPred.classList.remove('active');
+  } else {
+    matchPanel.classList.add('mobile-hidden');
+    predPanel.classList.remove('mobile-hidden');
+    tabPred.classList.add('active');
+    tabMatch.classList.remove('active');
+  }
+}
+
+function isMobile() { return window.innerWidth <= 768; }
+
 function highlightMatch(matchId) {
   document.querySelectorAll('.match-card').forEach(c => c.classList.remove('active'));
   const card = document.querySelector(`.match-card[data-id="${matchId}"]`);
   if (card) card.classList.add('active');
-  // scroll prediction row into view
-  const row = document.querySelector(`tr[data-match-id="${matchId}"]`);
-  if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  // on mobile: switch to pred tab first, then scroll to row
+  if (isMobile()) {
+    switchTab('pred');
+    setTimeout(() => {
+      const row = document.querySelector(`tr[data-match-id="${matchId}"]`);
+      if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 50);
+  } else {
+    const row = document.querySelector(`tr[data-match-id="${matchId}"]`);
+    if (row) row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 }
 
 function renderPredTable(data) {

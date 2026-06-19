@@ -612,3 +612,153 @@ body {
 .toast.success { border-color: var(--green); color: var(--green); }
 .toast.error   { border-color: var(--red);   color: var(--red); }
 @keyframes toastIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: none; } }
+
+/* ── Mobile Tabs ───────────────────────────────────────────────── */
+.mobile-tabs { display: none; }
+
+/* ── Mobile Responsive ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Login */
+  .login-box {
+    width: calc(100vw - 32px);
+    padding: 36px 24px;
+    border-radius: 16px;
+  }
+  .login-trophy { font-size: 48px; }
+  .login-title { font-size: 18px; }
+
+  /* Header: compact */
+  .header {
+    padding: 8px 12px;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .header-title span:last-child { display: none; }
+  .flags { font-size: 22px; }
+  .standings-bar {
+    order: 3;
+    flex-basis: 100%;
+    justify-content: flex-start;
+    gap: 6px;
+    padding-bottom: 4px;
+  }
+  .standing-chip { padding: 4px 10px; font-size: 12px; }
+  .header-user { font-size: 12px; gap: 6px; }
+
+  /* Day Nav: bigger touch targets */
+  .day-nav { padding: 8px 12px; gap: 8px; }
+  .day-label { font-size: 14px; min-width: 140px; }
+  .nav-btn { padding: 9px 16px; font-size: 15px; }
+
+  /* Mobile tabs */
+  .mobile-tabs {
+    display: flex;
+    background: var(--card);
+    border-bottom: 2px solid var(--border);
+  }
+  .mobile-tab {
+    flex: 1;
+    padding: 11px 8px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color .2s, border-color .2s;
+    margin-bottom: -2px;
+  }
+  .mobile-tab.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+  }
+
+  /* Main layout: stacked */
+  .main-layout {
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Match panel: full width, fills height */
+  .match-panel {
+    width: 100%;
+    min-width: unset;
+    border-right: none;
+    border-bottom: none;
+    flex: 1;
+    min-height: 0;
+  }
+  #match-list { padding: 10px; }
+
+  /* Match cards: bigger tap area */
+  .match-card {
+    padding: 14px 12px;
+    margin-bottom: 10px;
+  }
+  .match-card-teams { font-size: 14px; line-height: 1.7; }
+  .match-card-clock { font-size: 12px; }
+  .match-card-result { font-size: 16px; }
+  .admin-btn { padding: 5px 10px; font-size: 11px; top: 10px; right: 10px; }
+
+  /* Pred panel: full width, fills height */
+  .pred-panel {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  /* Tab hidden panels */
+  .match-panel.mobile-hidden,
+  .pred-panel.mobile-hidden { display: none !important; }
+
+  /* Pred table: allow horizontal scroll */
+  .pred-scroll { overflow: auto; }
+  .pred-table { min-width: 500px; }
+  .pred-table th { padding: 10px 8px; font-size: 11px; }
+  .pred-table td { padding: 8px; }
+  .pred-table th.th-match { min-width: 130px; width: 130px; }
+  .td-match-teams { font-size: 12px; }
+  .td-match-meta  { font-size: 10px; }
+  .td-match-result { font-size: 13px; }
+
+  /* Bigger prediction inputs (prevents iOS auto-zoom) */
+  .pred-inp {
+    width: 40px;
+    font-size: 16px;
+    padding: 6px 2px;
+  }
+  .pred-save-btn {
+    padding: 7px 10px;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  .pred-editable { gap: 3px; }
+  .pred-cell { min-width: 80px; padding: 8px 4px; }
+  .pred-score { font-size: 13px; padding: 3px 7px; }
+
+  /* Admin modal */
+  .modal-box {
+    width: calc(100vw - 32px);
+    padding: 28px 20px;
+    border-radius: 14px;
+  }
+  .score-inp { width: 56px; font-size: 26px; padding: 8px 4px; }
+  .score-team { max-width: 60px; font-size: 11px; }
+  .score-sep { font-size: 24px; }
+  .modal-actions { flex-wrap: wrap; gap: 8px; }
+  .btn-confirm, .btn-clear, .btn-cancel {
+    padding: 12px 16px;
+    font-size: 14px;
+    flex: 1;
+    min-width: 80px;
+  }
+
+  /* Toast at bottom center on mobile */
+  .toast {
+    left: 16px; right: 16px; bottom: 16px;
+    text-align: center;
+    font-size: 13px;
+  }
+}
