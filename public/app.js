@@ -335,7 +335,7 @@ function renderPredTable(data) {
       const predCells = players.map(player => {
         const pred = predMap[m.id]?.[player.id];
         const isMe = player.id === S.user?.id;
-        const canEdit = isMe;
+        const canEdit = isMe || S.user?.is_admin;
 
         if (canEdit) {
           const curH = pred ? pred.pred_home : '';
@@ -343,13 +343,13 @@ function renderPredTable(data) {
           return `
             <td class="pred-cell">
               <div class="pred-editable">
-                <input type="number" class="pred-inp" id="inp-h-${m.id}" value="${curH}" min="0" max="30" placeholder="0"
-                  onkeydown="handlePredKey(event,${m.id})"
-                  onblur="autoSavePred(${m.id})">
+                <input type="number" class="pred-inp" id="inp-h-${m.id}-${player.id}" value="${curH}" min="0" max="30" placeholder="0"
+                  onkeydown="handlePredKey(event,${m.id},${player.id})"
+                  onblur="autoSavePred(${m.id},${player.id})">
                 <span class="pred-sep">:</span>
-                <input type="number" class="pred-inp" id="inp-a-${m.id}" value="${curA}" min="0" max="30" placeholder="0"
-                  onkeydown="handlePredKey(event,${m.id})"
-                  onblur="autoSavePred(${m.id})">
+                <input type="number" class="pred-inp" id="inp-a-${m.id}-${player.id}" value="${curA}" min="0" max="30" placeholder="0"
+                  onkeydown="handlePredKey(event,${m.id},${player.id})"
+                  onblur="autoSavePred(${m.id},${player.id})">
               </div>
             </td>
           `;
@@ -389,34 +389,29 @@ function renderPredTable(data) {
 }
 
 // ── Predict ────────────────────────────────────────────────────────────────
-function handlePredKey(e, matchId) {
-  if (e.key === 'Enter') {
-    e.target.blur(); // 触发 onblur 自动保存
-  }
+function handlePredKey(e, matchId, playerId) {
+  if (e.key === 'Enter') e.target.blur();
 }
 
-async function autoSavePred(matchId) {
-  const hInp = document.getElementById(`inp-h-${matchId}`);
-  const aInp = document.getElementById(`inp-a-${matchId}`);
+async function autoSavePred(matchId, playerId) {
+  const hInp = document.getElementById(`inp-h-${matchId}-${playerId}`);
+  const aInp = document.getElementById(`inp-a-${matchId}-${playerId}`);
   if (!hInp || !aInp) return;
-  const h = hInp.value.trim();
-  const a = aInp.value.trim();
-  if (h === '' || a === '') return; // 两格都填才保存
-  await savePred(matchId);
+  if (hInp.value.trim() === '' || aInp.value.trim() === '') return;
+  await savePred(matchId, playerId);
 }
 
-async function savePred(matchId) {
-  const hInp = document.getElementById(`inp-h-${matchId}`);
-  const aInp = document.getElementById(`inp-a-${matchId}`);
+async function savePred(matchId, playerId) {
+  const hInp = document.getElementById(`inp-h-${matchId}-${playerId}`);
+  const aInp = document.getElementById(`inp-a-${matchId}-${playerId}`);
   if (!hInp || !aInp) return;
   const h = hInp.value.trim();
   const a = aInp.value.trim();
   if (h === '' || a === '') return;
   try {
-    await api('/api/predict', {
-      method: 'POST',
-      body: JSON.stringify({ match_id: matchId, pred_home: parseInt(h), pred_away: parseInt(a) }),
-    });
+    const body = { match_id: matchId, pred_home: parseInt(h), pred_away: parseInt(a) };
+    if (S.user?.is_admin) body.user_id = playerId;
+    await api('/api/predict', { method: 'POST', body: JSON.stringify(body) });
     toast('已保存 ✓');
     const data = await api(`/api/day/${S.currentDate}`);
     S.dayData = data;

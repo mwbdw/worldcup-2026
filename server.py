@@ -379,8 +379,13 @@ def api_predict():
     if match_id is None or pred_home is None or pred_away is None:
         return jsonify(error='参数缺失'), 400
 
-    user = fetch_one('SELECT is_admin FROM users WHERE id = :id', {'id': session['user_id']})
-    if user and user['is_admin']:
+    me = fetch_one('SELECT is_admin FROM users WHERE id = :id', {'id': session['user_id']})
+    target_uid = session['user_id']
+    if data.get('user_id'):
+        if not me or not me['is_admin']:
+            return jsonify(error='无权限'), 403
+        target_uid = int(data['user_id'])
+    elif me and me['is_admin']:
         return jsonify(error='管理员不参与预测'), 403
 
     match = fetch_one('SELECT * FROM matches WHERE id = :id', {'id': match_id})
@@ -404,7 +409,7 @@ def api_predict():
 
         old_pred = c.execute(
             text('SELECT points FROM predictions WHERE user_id = :uid AND match_id = :mid'),
-            {'uid': session['user_id'], 'mid': match_id}
+            {'uid': target_uid, 'mid': match_id}
         ).mappings().first()
         old_pts = old_pred['points'] if old_pred else None
 
@@ -412,7 +417,7 @@ def api_predict():
         delta = (new_pts or 0) - (old_pts or 0)
         if delta != 0:
             c.execute(text('UPDATE users SET total_points = total_points + :d WHERE id = :id'),
-                      {'d': delta, 'id': session['user_id']})
+                      {'d': delta, 'id': target_uid})
 
         c.execute(text("""
             INSERT INTO predictions (user_id, match_id, pred_home, pred_away, points)
@@ -421,7 +426,7 @@ def api_predict():
                 pred_home = excluded.pred_home,
                 pred_away = excluded.pred_away,
                 points = excluded.points
-        """), {'uid': session['user_id'], 'mid': match_id, 'ph': h, 'pa': a, 'pts': new_pts})
+        """), {'uid': target_uid, 'mid': match_id, 'ph': h, 'pa': a, 'pts': new_pts})
     return jsonify(ok=True)
 
 
