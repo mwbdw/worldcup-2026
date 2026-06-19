@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🏆 2026美加墨世界杯比分预测</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ── Login Modal ── -->
+<div id="login-overlay">
+  <div class="login-box">
+    <div class="login-trophy">🏆</div>
+    <h1 class="login-title">2026美加墨世界杯</h1>
+    <p class="login-subtitle">比分预测大赛</p>
+    <form id="login-form">
+      <div class="form-group">
+        <input type="text" id="inp-username" placeholder="用户名" autocomplete="username" required>
+      </div>
+      <div class="form-group">
+        <input type="password" id="inp-password" placeholder="密码" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="btn-login">登 录</button>
+      <p class="login-hint" id="login-error"></p>
+    </form>
+    <div class="login-accounts">
+      <p>测试账号：player1~4 密码 1234 | 管理员 admin / admin888</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── Main App ── -->
+<div id="app" class="hidden">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-title">
+      <span class="flags">🇺🇸🇨🇦🇲🇽</span>
+      <span>2026 世界杯比分预测</span>
+    </div>
+    <div class="standings-bar" id="standings-bar">
+      <!-- filled by JS -->
+    </div>
+    <div class="header-user">
+      <span id="header-username"></span>
+      <button class="btn-logout" onclick="logout()">退出</button>
+    </div>
+  </header>
+
+  <!-- Day Nav -->
+  <div class="day-nav">
+    <button class="nav-btn" id="btn-prev" onclick="prevDay()">◀</button>
+    <div class="day-label" id="day-label">加载中...</div>
+    <button class="nav-btn" id="btn-next" onclick="nextDay()">▶</button>
+    <button class="nav-btn nav-today" onclick="goToCurrentDay()">今日</button>
+  </div>
+
+  <!-- Main Layout -->
+  <div class="main-layout">
+
+    <!-- Left: Match List -->
+    <aside class="match-panel" id="match-panel">
+      <div class="panel-header">📅 赛程</div>
+      <div id="match-list">
+        <div class="loading">加载中...</div>
+      </div>
+    </aside>
+
+    <!-- Right: Prediction Table -->
+    <section class="pred-panel">
+      <div class="panel-header">🎯 预测对比</div>
+      <div class="pred-scroll">
+        <table class="pred-table" id="pred-table">
+          <thead id="pred-thead">
+            <tr>
+              <th class="th-match">比赛</th>
+              <!-- player columns added by JS -->
+            </tr>
+          </thead>
+          <tbody id="pred-tbody">
+            <tr><td colspan="6"><div class="loading">加载中...</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div><!-- /main-layout -->
+
+</div><!-- /app -->
+
+<!-- ── Admin Result Modal ── -->
+<div id="admin-modal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <h3 class="modal-title">⚙️ 录入比赛结果</h3>
+    <div class="modal-match" id="modal-match-name"></div>
+    <div class="score-input-row">
+      <div class="score-team" id="modal-home-name"></div>
+      <input type="number" id="modal-home-score" min="0" max="30" class="score-inp">
+      <span class="score-sep">-</span>
+      <input type="number" id="modal-away-score" min="0" max="30" class="score-inp">
+      <div class="score-team" id="modal-away-name"></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-confirm" onclick="submitResult()">确认</button>
+      <button class="btn-clear" onclick="clearResult()">清除结果</button>
+      <button class="btn-cancel" onclick="closeAdminModal()">取消</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
