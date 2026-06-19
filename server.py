@@ -122,94 +122,96 @@ USERS_SEED = [
 ]
 
 MATCHES_SEED = [
-    # ── 第1比赛日 6月11日 ──────────────────────────────────────
-    {'match_date':'2026-06-11','match_time':'15:00','home_team':'🇲🇽 墨西哥',       'away_team':'🇺🇾 乌拉圭',        'group_name':'A组'},
-    {'match_date':'2026-06-11','match_time':'18:00','home_team':'🇳🇿 新西兰',       'away_team':'🇰🇿 哈萨克斯坦',    'group_name':'A组'},
-    {'match_date':'2026-06-11','match_time':'21:00','home_team':'🇺🇸 美国',         'away_team':'🇨🇳 中国',          'group_name':'B组'},
-    {'match_date':'2026-06-11','match_time':'22:00','home_team':'🇵🇦 巴拿马',       'away_team':'🇸🇷 苏里南',        'group_name':'B组'},
-    # ── 第2比赛日 6月12日 ──────────────────────────────────────
-    {'match_date':'2026-06-12','match_time':'15:00','home_team':'🇨🇦 加拿大',       'away_team':'🇲🇦 摩洛哥',        'group_name':'C组'},
-    {'match_date':'2026-06-12','match_time':'18:00','home_team':'🇭🇳 洪都拉斯',     'away_team':'🇧🇴 玻利维亚',      'group_name':'C组'},
-    {'match_date':'2026-06-12','match_time':'21:00','home_team':'🇩🇪 德国',         'away_team':'🇯🇵 日本',          'group_name':'D组'},
-    {'match_date':'2026-06-12','match_time':'22:00','home_team':'🇸🇪 瑞典',         'away_team':'🇦🇺 澳大利亚',      'group_name':'D组'},
-    # ── 第3比赛日 6月13日 ──────────────────────────────────────
-    {'match_date':'2026-06-13','match_time':'15:00','home_team':'🇦🇷 阿根廷',       'away_team':'🇨🇱 智利',          'group_name':'E组'},
-    {'match_date':'2026-06-13','match_time':'18:00','home_team':'🇳🇬 尼日利亚',     'away_team':'🇪🇨 厄瓜多尔',      'group_name':'E组'},
-    {'match_date':'2026-06-13','match_time':'21:00','home_team':'🇧🇷 巴西',         'away_team':'🇭🇷 克罗地亚',      'group_name':'F组'},
-    {'match_date':'2026-06-13','match_time':'22:00','home_team':'🇨🇭 瑞士',         'away_team':'🇬🇭 加纳',          'group_name':'F组'},
-    # ── 第4比赛日 6月14日 ──────────────────────────────────────
-    {'match_date':'2026-06-14','match_time':'15:00','home_team':'🇫🇷 法国',         'away_team':'🇵🇱 波兰',          'group_name':'G组'},
-    {'match_date':'2026-06-14','match_time':'18:00','home_team':'🇦🇱 阿尔巴尼亚',   'away_team':'🇾🇪 也门',          'group_name':'G组'},
-    {'match_date':'2026-06-14','match_time':'21:00','home_team':'🇪🇸 西班牙',       'away_team':'🇨🇴 哥伦比亚',      'group_name':'H组'},
-    {'match_date':'2026-06-14','match_time':'22:00','home_team':'🇸🇳 塞内加尔',     'away_team':'🇮🇷 伊朗',          'group_name':'H组'},
-    # ── 第5比赛日 6月15日 ──────────────────────────────────────
-    {'match_date':'2026-06-15','match_time':'15:00','home_team':'🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰',       'away_team':'🇰🇷 韩国',          'group_name':'I组'},
-    {'match_date':'2026-06-15','match_time':'18:00','home_team':'🇵🇪 秘鲁',         'away_team':'🇹🇳 突尼斯',        'group_name':'I组'},
-    {'match_date':'2026-06-15','match_time':'21:00','home_team':'🇵🇹 葡萄牙',       'away_team':'🇨🇮 科特迪瓦',      'group_name':'J组'},
-    {'match_date':'2026-06-15','match_time':'22:00','home_team':'🇺🇿 乌兹别克斯坦', 'away_team':'🇮🇩 印度尼西亚',    'group_name':'J组'},
-    # ── 第6比赛日 6月16日 ──────────────────────────────────────
-    {'match_date':'2026-06-16','match_time':'15:00','home_team':'🇳🇱 荷兰',         'away_team':'🇸🇦 沙特阿拉伯',    'group_name':'K组'},
-    {'match_date':'2026-06-16','match_time':'18:00','home_team':'🇦🇴 安哥拉',       'away_team':'🇭🇺 匈牙利',        'group_name':'K组'},
-    {'match_date':'2026-06-16','match_time':'21:00','home_team':'🇧🇪 比利时',       'away_team':'🇷🇸 塞尔维亚',      'group_name':'L组'},
-    {'match_date':'2026-06-16','match_time':'22:00','home_team':'🇨🇲 喀麦隆',       'away_team':'🇦🇿 阿塞拜疆',      'group_name':'L组'},
-    # ── 第7比赛日 6月17日 ──────────────────────────────────────
-    {'match_date':'2026-06-17','match_time':'15:00','home_team':'🇲🇽 墨西哥',       'away_team':'🇳🇿 新西兰',        'group_name':'A组'},
-    {'match_date':'2026-06-17','match_time':'18:00','home_team':'🇺🇾 乌拉圭',       'away_team':'🇰🇿 哈萨克斯坦',    'group_name':'A组'},
-    {'match_date':'2026-06-17','match_time':'21:00','home_team':'🇺🇸 美国',         'away_team':'🇵🇦 巴拿马',        'group_name':'B组'},
-    {'match_date':'2026-06-17','match_time':'22:00','home_team':'🇨🇳 中国',         'away_team':'🇸🇷 苏里南',        'group_name':'B组'},
-    # ── 第8比赛日 6月18日 ──────────────────────────────────────
-    {'match_date':'2026-06-18','match_time':'15:00','home_team':'🇨🇦 加拿大',       'away_team':'🇭🇳 洪都拉斯',      'group_name':'C组'},
-    {'match_date':'2026-06-18','match_time':'18:00','home_team':'🇲🇦 摩洛哥',       'away_team':'🇧🇴 玻利维亚',      'group_name':'C组'},
-    {'match_date':'2026-06-18','match_time':'21:00','home_team':'🇩🇪 德国',         'away_team':'🇸🇪 瑞典',          'group_name':'D组'},
-    {'match_date':'2026-06-18','match_time':'22:00','home_team':'🇯🇵 日本',         'away_team':'🇦🇺 澳大利亚',      'group_name':'D组'},
-    # ── 第9比赛日 6月19日 ──────────────────────────────────────
-    {'match_date':'2026-06-19','match_time':'15:00','home_team':'🇦🇷 阿根廷',       'away_team':'🇳🇬 尼日利亚',      'group_name':'E组'},
-    {'match_date':'2026-06-19','match_time':'18:00','home_team':'🇨🇱 智利',         'away_team':'🇪🇨 厄瓜多尔',      'group_name':'E组'},
-    {'match_date':'2026-06-19','match_time':'21:00','home_team':'🇧🇷 巴西',         'away_team':'🇨🇭 瑞士',          'group_name':'F组'},
-    {'match_date':'2026-06-19','match_time':'22:00','home_team':'🇭🇷 克罗地亚',     'away_team':'🇬🇭 加纳',          'group_name':'F组'},
-    # ── 第10比赛日 6月20日 ─────────────────────────────────────
-    {'match_date':'2026-06-20','match_time':'15:00','home_team':'🇫🇷 法国',         'away_team':'🇦🇱 阿尔巴尼亚',    'group_name':'G组'},
-    {'match_date':'2026-06-20','match_time':'18:00','home_team':'🇵🇱 波兰',         'away_team':'🇾🇪 也门',          'group_name':'G组'},
-    {'match_date':'2026-06-20','match_time':'21:00','home_team':'🇪🇸 西班牙',       'away_team':'🇸🇳 塞内加尔',      'group_name':'H组'},
-    {'match_date':'2026-06-20','match_time':'22:00','home_team':'🇨🇴 哥伦比亚',     'away_team':'🇮🇷 伊朗',          'group_name':'H组'},
-    # ── 第11比赛日 6月21日 ─────────────────────────────────────
-    {'match_date':'2026-06-21','match_time':'15:00','home_team':'🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰',       'away_team':'🇵🇪 秘鲁',          'group_name':'I组'},
-    {'match_date':'2026-06-21','match_time':'18:00','home_team':'🇰🇷 韩国',         'away_team':'🇹🇳 突尼斯',        'group_name':'I组'},
-    {'match_date':'2026-06-21','match_time':'21:00','home_team':'🇵🇹 葡萄牙',       'away_team':'🇺🇿 乌兹别克斯坦',  'group_name':'J组'},
-    {'match_date':'2026-06-21','match_time':'22:00','home_team':'🇨🇮 科特迪瓦',     'away_team':'🇮🇩 印度尼西亚',    'group_name':'J组'},
-    # ── 第12比赛日 6月22日 ─────────────────────────────────────
-    {'match_date':'2026-06-22','match_time':'15:00','home_team':'🇳🇱 荷兰',         'away_team':'🇦🇴 安哥拉',        'group_name':'K组'},
-    {'match_date':'2026-06-22','match_time':'18:00','home_team':'🇸🇦 沙特阿拉伯',   'away_team':'🇭🇺 匈牙利',        'group_name':'K组'},
-    {'match_date':'2026-06-22','match_time':'21:00','home_team':'🇧🇪 比利时',       'away_team':'🇨🇲 喀麦隆',        'group_name':'L组'},
-    {'match_date':'2026-06-22','match_time':'22:00','home_team':'🇷🇸 塞尔维亚',     'away_team':'🇦🇿 阿塞拜疆',      'group_name':'L组'},
-    # ── 第13比赛日 6月23日 (A/B/C 第3轮) ──────────────────────
-    {'match_date':'2026-06-23','match_time':'20:00','home_team':'🇲🇽 墨西哥',       'away_team':'🇰🇿 哈萨克斯坦',    'group_name':'A组'},
-    {'match_date':'2026-06-23','match_time':'20:00','home_team':'🇳🇿 新西兰',       'away_team':'🇺🇾 乌拉圭',        'group_name':'A组'},
-    {'match_date':'2026-06-23','match_time':'20:00','home_team':'🇺🇸 美国',         'away_team':'🇸🇷 苏里南',        'group_name':'B组'},
-    {'match_date':'2026-06-23','match_time':'20:00','home_team':'🇨🇳 中国',         'away_team':'🇵🇦 巴拿马',        'group_name':'B组'},
-    {'match_date':'2026-06-23','match_time':'22:00','home_team':'🇨🇦 加拿大',       'away_team':'🇧🇴 玻利维亚',      'group_name':'C组'},
-    {'match_date':'2026-06-23','match_time':'22:00','home_team':'🇲🇦 摩洛哥',       'away_team':'🇭🇳 洪都拉斯',      'group_name':'C组'},
-    # ── 第14比赛日 6月24日 (D/E/F 第3轮) ──────────────────────
-    {'match_date':'2026-06-24','match_time':'20:00','home_team':'🇩🇪 德国',         'away_team':'🇦🇺 澳大利亚',      'group_name':'D组'},
-    {'match_date':'2026-06-24','match_time':'20:00','home_team':'🇯🇵 日本',         'away_team':'🇸🇪 瑞典',          'group_name':'D组'},
-    {'match_date':'2026-06-24','match_time':'20:00','home_team':'🇦🇷 阿根廷',       'away_team':'🇪🇨 厄瓜多尔',      'group_name':'E组'},
-    {'match_date':'2026-06-24','match_time':'20:00','home_team':'🇨🇱 智利',         'away_team':'🇳🇬 尼日利亚',      'group_name':'E组'},
-    {'match_date':'2026-06-24','match_time':'22:00','home_team':'🇧🇷 巴西',         'away_team':'🇬🇭 加纳',          'group_name':'F组'},
-    {'match_date':'2026-06-24','match_time':'22:00','home_team':'🇭🇷 克罗地亚',     'away_team':'🇨🇭 瑞士',          'group_name':'F组'},
-    # ── 第15比赛日 6月25日 (G/H/I 第3轮) ──────────────────────
-    {'match_date':'2026-06-25','match_time':'20:00','home_team':'🇫🇷 法国',         'away_team':'🇾🇪 也门',          'group_name':'G组'},
-    {'match_date':'2026-06-25','match_time':'20:00','home_team':'🇵🇱 波兰',         'away_team':'🇦🇱 阿尔巴尼亚',    'group_name':'G组'},
-    {'match_date':'2026-06-25','match_time':'20:00','home_team':'🇪🇸 西班牙',       'away_team':'🇮🇷 伊朗',          'group_name':'H组'},
-    {'match_date':'2026-06-25','match_time':'20:00','home_team':'🇨🇴 哥伦比亚',     'away_team':'🇸🇳 塞内加尔',      'group_name':'H组'},
-    {'match_date':'2026-06-25','match_time':'22:00','home_team':'🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰',       'away_team':'🇹🇳 突尼斯',        'group_name':'I组'},
-    {'match_date':'2026-06-25','match_time':'22:00','home_team':'🇰🇷 韩国',         'away_team':'🇵🇪 秘鲁',          'group_name':'I组'},
-    # ── 第16比赛日 6月26日 (J/K/L 第3轮) ──────────────────────
-    {'match_date':'2026-06-26','match_time':'20:00','home_team':'🇵🇹 葡萄牙',       'away_team':'🇮🇩 印度尼西亚',    'group_name':'J组'},
-    {'match_date':'2026-06-26','match_time':'20:00','home_team':'🇨🇮 科特迪瓦',     'away_team':'🇺🇿 乌兹别克斯坦',  'group_name':'J组'},
-    {'match_date':'2026-06-26','match_time':'20:00','home_team':'🇳🇱 荷兰',         'away_team':'🇭🇺 匈牙利',        'group_name':'K组'},
-    {'match_date':'2026-06-26','match_time':'20:00','home_team':'🇸🇦 沙特阿拉伯',   'away_team':'🇦🇴 安哥拉',        'group_name':'K组'},
-    {'match_date':'2026-06-26','match_time':'22:00','home_team':'🇧🇪 比利时',       'away_team':'🇦🇿 阿塞拜疆',      'group_name':'L组'},
-    {'match_date':'2026-06-26','match_time':'22:00','home_team':'🇷🇸 塞尔维亚',     'away_team':'🇨🇲 喀麦隆',        'group_name':'L组'},
+    # 所有时间均为北京时间（UTC+8）
+    # ── 第1比赛日 6月12日 ──────────────────────────────────────
+    {'match_date':'2026-06-12','match_time':'03:00','home_team':'🇲🇽 墨西哥',       'away_team':'🇿🇦 南非',          'group_name':'A组'},
+    {'match_date':'2026-06-12','match_time':'10:00','home_team':'🇰🇷 韩国',         'away_team':'🇨🇿 捷克',          'group_name':'A组'},
+    # ── 第2比赛日 6月13日 ──────────────────────────────────────
+    {'match_date':'2026-06-13','match_time':'03:00','home_team':'🇨🇦 加拿大',       'away_team':'🇧🇦 波黑',          'group_name':'B组'},
+    {'match_date':'2026-06-13','match_time':'09:00','home_team':'🇺🇸 美国',         'away_team':'🇵🇾 巴拉圭',        'group_name':'D组'},
+    # ── 第3比赛日 6月14日 ──────────────────────────────────────
+    {'match_date':'2026-06-14','match_time':'03:00','home_team':'🇶🇦 卡塔尔',       'away_team':'🇨🇭 瑞士',          'group_name':'B组'},
+    {'match_date':'2026-06-14','match_time':'06:00','home_team':'🇧🇷 巴西',         'away_team':'🇲🇦 摩洛哥',        'group_name':'C组'},
+    {'match_date':'2026-06-14','match_time':'09:00','home_team':'🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰',       'away_team':'🇭🇹 海地',          'group_name':'C组'},
+    {'match_date':'2026-06-14','match_time':'12:00','home_team':'🇦🇺 澳大利亚',     'away_team':'🇹🇷 土耳其',        'group_name':'D组'},
+    # ── 第4比赛日 6月15日 ──────────────────────────────────────
+    {'match_date':'2026-06-15','match_time':'01:00','home_team':'🇩🇪 德国',         'away_team':'🇨🇼 库拉索',        'group_name':'E组'},
+    {'match_date':'2026-06-15','match_time':'04:00','home_team':'🇳🇱 荷兰',         'away_team':'🇯🇵 日本',          'group_name':'F组'},
+    {'match_date':'2026-06-15','match_time':'07:00','home_team':'🇨🇮 科特迪瓦',     'away_team':'🇪🇨 厄瓜多尔',      'group_name':'E组'},
+    {'match_date':'2026-06-15','match_time':'10:00','home_team':'🇸🇪 瑞典',         'away_team':'🇹🇳 突尼斯',        'group_name':'F组'},
+    # ── 第5比赛日 6月16日 ──────────────────────────────────────
+    {'match_date':'2026-06-16','match_time':'00:00','home_team':'🇪🇸 西班牙',       'away_team':'🇨🇻 佛得角',        'group_name':'H组'},
+    {'match_date':'2026-06-16','match_time':'03:00','home_team':'🇧🇪 比利时',       'away_team':'🇪🇬 埃及',          'group_name':'G组'},
+    {'match_date':'2026-06-16','match_time':'06:00','home_team':'🇸🇦 沙特阿拉伯',   'away_team':'🇺🇾 乌拉圭',        'group_name':'H组'},
+    {'match_date':'2026-06-16','match_time':'09:00','home_team':'🇮🇷 伊朗',         'away_team':'🇳🇿 新西兰',        'group_name':'G组'},
+    # ── 第6比赛日 6月17日 ──────────────────────────────────────
+    {'match_date':'2026-06-17','match_time':'03:00','home_team':'🇫🇷 法国',         'away_team':'🇸🇳 塞内加尔',      'group_name':'I组'},
+    {'match_date':'2026-06-17','match_time':'06:00','home_team':'🇮🇶 伊拉克',       'away_team':'🇳🇴 挪威',          'group_name':'I组'},
+    {'match_date':'2026-06-17','match_time':'09:00','home_team':'🇦🇷 阿根廷',       'away_team':'🇩🇿 阿尔及利亚',    'group_name':'J组'},
+    {'match_date':'2026-06-17','match_time':'12:00','home_team':'🇦🇹 奥地利',       'away_team':'🇯🇴 约旦',          'group_name':'J组'},
+    # ── 第7比赛日 6月18日 ──────────────────────────────────────
+    {'match_date':'2026-06-18','match_time':'01:00','home_team':'🇵🇹 葡萄牙',       'away_team':'🇨🇩 刚果（金）',    'group_name':'K组'},
+    {'match_date':'2026-06-18','match_time':'04:00','home_team':'🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰',       'away_team':'🇭🇷 克罗地亚',      'group_name':'L组'},
+    {'match_date':'2026-06-18','match_time':'07:00','home_team':'🇬🇭 加纳',         'away_team':'🇵🇦 巴拿马',        'group_name':'L组'},
+    {'match_date':'2026-06-18','match_time':'10:00','home_team':'🇺🇿 乌兹别克斯坦', 'away_team':'🇨🇴 哥伦比亚',      'group_name':'K组'},
+    # ── 第8比赛日 6月19日 ──────────────────────────────────────
+    {'match_date':'2026-06-19','match_time':'00:00','home_team':'🇨🇿 捷克',         'away_team':'🇿🇦 南非',          'group_name':'A组'},
+    {'match_date':'2026-06-19','match_time':'03:00','home_team':'🇨🇭 瑞士',         'away_team':'🇧🇦 波黑',          'group_name':'B组'},
+    {'match_date':'2026-06-19','match_time':'06:00','home_team':'🇨🇦 加拿大',       'away_team':'🇶🇦 卡塔尔',        'group_name':'B组'},
+    {'match_date':'2026-06-19','match_time':'09:00','home_team':'🇲🇽 墨西哥',       'away_team':'🇰🇷 韩国',          'group_name':'A组'},
+    # ── 第9比赛日 6月20日 ──────────────────────────────────────
+    {'match_date':'2026-06-20','match_time':'03:00','home_team':'🇺🇸 美国',         'away_team':'🇦🇺 澳大利亚',      'group_name':'D组'},
+    {'match_date':'2026-06-20','match_time':'06:00','home_team':'🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰',       'away_team':'🇲🇦 摩洛哥',        'group_name':'C组'},
+    {'match_date':'2026-06-20','match_time':'08:30','home_team':'🇧🇷 巴西',         'away_team':'🇭🇹 海地',          'group_name':'C组'},
+    {'match_date':'2026-06-20','match_time':'11:00','home_team':'🇹🇷 土耳其',       'away_team':'🇵🇾 巴拉圭',        'group_name':'D组'},
+    # ── 第10比赛日 6月21日 ─────────────────────────────────────
+    {'match_date':'2026-06-21','match_time':'01:00','home_team':'🇳🇱 荷兰',         'away_team':'🇸🇪 瑞典',          'group_name':'F组'},
+    {'match_date':'2026-06-21','match_time':'04:00','home_team':'🇩🇪 德国',         'away_team':'🇨🇮 科特迪瓦',      'group_name':'E组'},
+    {'match_date':'2026-06-21','match_time':'11:00','home_team':'🇪🇨 厄瓜多尔',     'away_team':'🇨🇼 库拉索',        'group_name':'E组'},
+    {'match_date':'2026-06-21','match_time':'12:00','home_team':'🇹🇳 突尼斯',       'away_team':'🇯🇵 日本',          'group_name':'F组'},
+    # ── 第11比赛日 6月22日 ─────────────────────────────────────
+    {'match_date':'2026-06-22','match_time':'00:00','home_team':'🇪🇸 西班牙',       'away_team':'🇸🇦 沙特阿拉伯',    'group_name':'H组'},
+    {'match_date':'2026-06-22','match_time':'03:00','home_team':'🇧🇪 比利时',       'away_team':'🇮🇷 伊朗',          'group_name':'G组'},
+    {'match_date':'2026-06-22','match_time':'06:00','home_team':'🇺🇾 乌拉圭',       'away_team':'🇨🇻 佛得角',        'group_name':'H组'},
+    {'match_date':'2026-06-22','match_time':'09:00','home_team':'🇳🇿 新西兰',       'away_team':'🇪🇬 埃及',          'group_name':'G组'},
+    # ── 第12比赛日 6月23日 ─────────────────────────────────────
+    {'match_date':'2026-06-23','match_time':'01:00','home_team':'🇦🇷 阿根廷',       'away_team':'🇦🇹 奥地利',        'group_name':'J组'},
+    {'match_date':'2026-06-23','match_time':'05:00','home_team':'🇫🇷 法国',         'away_team':'🇮🇶 伊拉克',        'group_name':'I组'},
+    {'match_date':'2026-06-23','match_time':'08:00','home_team':'🇳🇴 挪威',         'away_team':'🇸🇳 塞内加尔',      'group_name':'I组'},
+    {'match_date':'2026-06-23','match_time':'11:00','home_team':'🇯🇴 约旦',         'away_team':'🇩🇿 阿尔及利亚',    'group_name':'J组'},
+    # ── 第13比赛日 6月24日 ─────────────────────────────────────
+    {'match_date':'2026-06-24','match_time':'01:00','home_team':'🇵🇹 葡萄牙',       'away_team':'🇺🇿 乌兹别克斯坦',  'group_name':'K组'},
+    {'match_date':'2026-06-24','match_time':'04:00','home_team':'🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰',       'away_team':'🇬🇭 加纳',          'group_name':'L组'},
+    {'match_date':'2026-06-24','match_time':'07:00','home_team':'🇵🇦 巴拿马',       'away_team':'🇭🇷 克罗地亚',      'group_name':'L组'},
+    {'match_date':'2026-06-24','match_time':'10:00','home_team':'🇨🇴 哥伦比亚',     'away_team':'🇨🇩 刚果（金）',    'group_name':'K组'},
+    # ── 第14比赛日 6月25日（A/B/C 第3轮）──────────────────────
+    {'match_date':'2026-06-25','match_time':'03:00','home_team':'🇨🇭 瑞士',         'away_team':'🇨🇦 加拿大',        'group_name':'B组'},
+    {'match_date':'2026-06-25','match_time':'03:00','home_team':'🇧🇦 波黑',         'away_team':'🇶🇦 卡塔尔',        'group_name':'B组'},
+    {'match_date':'2026-06-25','match_time':'06:00','home_team':'🏴󠁧󠁢󠁳󠁣󠁴󠁿 苏格兰',       'away_team':'🇧🇷 巴西',          'group_name':'C组'},
+    {'match_date':'2026-06-25','match_time':'06:00','home_team':'🇲🇦 摩洛哥',       'away_team':'🇭🇹 海地',          'group_name':'C组'},
+    {'match_date':'2026-06-25','match_time':'09:00','home_team':'🇨🇿 捷克',         'away_team':'🇲🇽 墨西哥',        'group_name':'A组'},
+    {'match_date':'2026-06-25','match_time':'09:00','home_team':'🇿🇦 南非',         'away_team':'🇰🇷 韩国',          'group_name':'A组'},
+    # ── 第15比赛日 6月26日（D/E/F 第3轮）──────────────────────
+    {'match_date':'2026-06-26','match_time':'04:00','home_team':'🇪🇨 厄瓜多尔',     'away_team':'🇩🇪 德国',          'group_name':'E组'},
+    {'match_date':'2026-06-26','match_time':'04:00','home_team':'🇨🇼 库拉索',       'away_team':'🇨🇮 科特迪瓦',      'group_name':'E组'},
+    {'match_date':'2026-06-26','match_time':'07:00','home_team':'🇯🇵 日本',         'away_team':'🇸🇪 瑞典',          'group_name':'F组'},
+    {'match_date':'2026-06-26','match_time':'07:00','home_team':'🇹🇳 突尼斯',       'away_team':'🇳🇱 荷兰',          'group_name':'F组'},
+    {'match_date':'2026-06-26','match_time':'10:00','home_team':'🇹🇷 土耳其',       'away_team':'🇺🇸 美国',          'group_name':'D组'},
+    {'match_date':'2026-06-26','match_time':'10:00','home_team':'🇵🇾 巴拉圭',       'away_team':'🇦🇺 澳大利亚',      'group_name':'D组'},
+    # ── 第16比赛日 6月27日（G/H/I 第3轮）──────────────────────
+    {'match_date':'2026-06-27','match_time':'03:00','home_team':'🇳🇴 挪威',         'away_team':'🇫🇷 法国',          'group_name':'I组'},
+    {'match_date':'2026-06-27','match_time':'03:00','home_team':'🇸🇳 塞内加尔',     'away_team':'🇮🇶 伊拉克',        'group_name':'I组'},
+    {'match_date':'2026-06-27','match_time':'08:00','home_team':'🇨🇻 佛得角',       'away_team':'🇸🇦 沙特阿拉伯',    'group_name':'H组'},
+    {'match_date':'2026-06-27','match_time':'08:00','home_team':'🇺🇾 乌拉圭',       'away_team':'🇪🇸 西班牙',        'group_name':'H组'},
+    {'match_date':'2026-06-27','match_time':'11:00','home_team':'🇪🇬 埃及',         'away_team':'🇮🇷 伊朗',          'group_name':'G组'},
+    {'match_date':'2026-06-27','match_time':'11:00','home_team':'🇳🇿 新西兰',       'away_team':'🇧🇪 比利时',        'group_name':'G组'},
+    # ── 第17比赛日 6月28日（J/K/L 第3轮）──────────────────────
+    {'match_date':'2026-06-28','match_time':'05:00','home_team':'🇵🇦 巴拿马',       'away_team':'🏴󠁧󠁢󠁥󠁮󠁧󠁿 英格兰',       'group_name':'L组'},
+    {'match_date':'2026-06-28','match_time':'05:00','home_team':'🇭🇷 克罗地亚',     'away_team':'🇬🇭 加纳',          'group_name':'L组'},
+    {'match_date':'2026-06-28','match_time':'07:30','home_team':'🇨🇴 哥伦比亚',     'away_team':'🇵🇹 葡萄牙',        'group_name':'K组'},
+    {'match_date':'2026-06-28','match_time':'07:30','home_team':'🇨🇩 刚果（金）',   'away_team':'🇺🇿 乌兹别克斯坦',  'group_name':'K组'},
+    {'match_date':'2026-06-28','match_time':'10:00','home_team':'🇩🇿 阿尔及利亚',   'away_team':'🇦🇹 奥地利',        'group_name':'J组'},
+    {'match_date':'2026-06-28','match_time':'10:00','home_team':'🇯🇴 约旦',         'away_team':'🇦🇷 阿根廷',        'group_name':'J组'},
 ]
 
 
@@ -353,8 +355,9 @@ def build_day(date):
 
 @app.get('/api/current-day')
 def api_current_day():
-    from datetime import date
-    today = date.today().isoformat()
+    from datetime import datetime, timezone, timedelta
+    # 使用北京时间（UTC+8）确定今天
+    today = datetime.now(timezone(timedelta(hours=8))).strftime('%Y-%m-%d')
     has_today = fetch_one('SELECT 1 AS x FROM matches WHERE match_date = :d LIMIT 1', {'d': today})
     if has_today:
         target = today
@@ -428,6 +431,19 @@ def api_admin_result():
     run('UPDATE matches SET home_score = :h, away_score = :a WHERE id = :id', {'h': h, 'a': a, 'id': match_id})
     settle_match(match_id)
     return jsonify(ok=True)
+
+
+@app.post('/api/admin/reset-seed')
+@require_admin
+def api_admin_reset_seed():
+    with engine.begin() as c:
+        c.execute(text('DELETE FROM predictions'))
+        c.execute(text('DELETE FROM matches'))
+        c.execute(text(
+            'INSERT INTO matches (match_date, match_time, home_team, away_team, group_name) '
+            'VALUES (:match_date, :match_time, :home_team, :away_team, :group_name)'
+        ), MATCHES_SEED)
+    return jsonify(ok=True, message=f'已重置 {len(MATCHES_SEED)} 场比赛（所有预测已清空）')
 
 
 @app.post('/api/admin/clear-result')
