@@ -435,8 +435,13 @@ def api_set_points():
             raise ValueError
     except (ValueError, TypeError):
         return jsonify(error='积分无效'), 400
-    run('UPDATE users SET total_points = :pts WHERE id = :id',
-        {'pts': pts, 'id': session['user_id']})
+    target_id = session['user_id']
+    if data.get('user_id'):
+        me = fetch_one('SELECT is_admin FROM users WHERE id = :id', {'id': session['user_id']})
+        if not me or not me['is_admin']:
+            return jsonify(error='无权限'), 403
+        target_id = int(data['user_id'])
+    run('UPDATE users SET total_points = :pts WHERE id = :id', {'pts': pts, 'id': target_id})
     return jsonify(ok=True)
 
 

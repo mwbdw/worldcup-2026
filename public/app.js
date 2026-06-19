@@ -87,8 +87,9 @@ async function loadStandings() {
     const bar = document.getElementById('standings-bar');
     bar.innerHTML = standings.map((s, i) => {
       const isMe = s.id === S.user?.id;
-      const ptsHtml = isMe
-        ? `<span class="pts pts-editable" onclick="editMyPoints(${s.total_points})" title="点击修改积分">${s.total_points}分 ✏️</span>`
+      const canEdit = isMe || S.user?.is_admin;
+      const ptsHtml = canEdit
+        ? `<span class="pts pts-editable" onclick="editPoints(${s.id},'${s.display_name}',${s.total_points})" title="点击修改积分">${s.total_points}分 ✏️</span>`
         : `<span class="pts">${s.total_points}分</span>`;
       return `
         <div class="standing-chip rank${i + 1}${isMe ? ' mine' : ''}">
@@ -100,13 +101,16 @@ async function loadStandings() {
   } catch (_) {}
 }
 
-async function editMyPoints(current) {
-  const val = prompt(`修改你的总积分（当前 ${current} 分）`, current);
+async function editPoints(userId, name, current) {
+  const label = S.user?.is_admin && S.user?.id !== userId ? `「${name}」的总积分` : '你的总积分';
+  const val = prompt(`修改${label}（当前 ${current} 分）`, current);
   if (val === null) return;
   const pts = parseInt(val);
   if (isNaN(pts) || pts < 0) { toast('请输入有效积分', 'error'); return; }
   try {
-    await api('/api/set-points', { method: 'POST', body: JSON.stringify({ points: pts }) });
+    const body = { points: pts };
+    if (S.user?.is_admin) body.user_id = userId;
+    await api('/api/set-points', { method: 'POST', body: JSON.stringify(body) });
     toast('积分已更新 ✓');
     await loadStandings();
   } catch (err) {
