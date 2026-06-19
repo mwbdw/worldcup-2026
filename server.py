@@ -115,10 +115,10 @@ PG_SCHEMA = [
 # ── 种子数据 ───────────────────────────────────────────────────────────────
 USERS_SEED = [
     {'username':'admin',   'display_name':'管理员',   'password':'admin888', 'is_admin':1},
-    {'username':'player1', 'display_name':'预言帝',   'password':'1234',     'is_admin':0},
-    {'username':'player2', 'display_name':'球迷老王', 'password':'1234',     'is_admin':0},
-    {'username':'player3', 'display_name':'赌神小李', 'password':'1234',     'is_admin':0},
-    {'username':'player4', 'display_name':'乌鸦嘴张', 'password':'1234',     'is_admin':0},
+    {'username':'player1', 'display_name':'茅', 'password':'1234', 'is_admin':0},
+    {'username':'player2', 'display_name':'闫', 'password':'1234', 'is_admin':0},
+    {'username':'player3', 'display_name':'王', 'password':'1234', 'is_admin':0},
+    {'username':'player4', 'display_name':'岳', 'password':'1234', 'is_admin':0},
 ]
 
 MATCHES_SEED = [
@@ -304,16 +304,12 @@ def api_me():
 @app.post('/api/login')
 def api_login():
     data = request.get_json(force=True, silent=True) or {}
-    username = (data.get('username') or '').strip()
-    password = data.get('password') or ''
-    if not username or not password:
-        return jsonify(error='请输入用户名和密码'), 400
-    user = fetch_one(
-        'SELECT * FROM users WHERE username = :u AND password = :p',
-        {'u': username, 'p': password}
-    )
+    name = (data.get('name') or '').strip()
+    if not name:
+        return jsonify(error='请输入你的名字'), 400
+    user = fetch_one('SELECT * FROM users WHERE display_name = :n', {'n': name})
     if not user:
-        return jsonify(error='用户名或密码错误'), 401
+        return jsonify(error='名字不存在，请确认后重试'), 401
     session['user_id'] = user['id']
     return jsonify(user={k: user[k] for k in ('id', 'username', 'display_name', 'is_admin', 'total_points')})
 
@@ -414,7 +410,7 @@ def api_predict():
 
 
 @app.post('/api/admin/result')
-@require_admin
+@require_auth
 def api_admin_result():
     data = request.get_json(force=True, silent=True) or {}
     match_id, home_score, away_score = data.get('match_id'), data.get('home_score'), data.get('away_score')
@@ -447,7 +443,7 @@ def api_admin_reset_seed():
 
 
 @app.post('/api/admin/clear-result')
-@require_admin
+@require_auth
 def api_admin_clear():
     data = request.get_json(force=True, silent=True) or {}
     match_id = data.get('match_id')

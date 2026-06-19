@@ -41,10 +41,7 @@ document.getElementById('login-form').addEventListener('submit', async e => {
   try {
     const { user } = await api('/api/login', {
       method: 'POST',
-      body: JSON.stringify({
-        username: document.getElementById('inp-username').value.trim(),
-        password: document.getElementById('inp-password').value,
-      }),
+      body: JSON.stringify({ name: document.getElementById('inp-name').value.trim() }),
     });
     S.user = user;
     showApp();
@@ -60,7 +57,7 @@ async function logout() {
   S.dayData = null;
   document.getElementById('app').classList.add('hidden');
   document.getElementById('login-overlay').classList.remove('hidden');
-  document.getElementById('inp-password').value = '';
+  document.getElementById('inp-name').value = '';
 }
 
 // ── Init ───────────────────────────────────────────────────────────────────
@@ -196,7 +193,7 @@ function renderMatchList(data) {
     const badge = m.settled
       ? '<span class="badge-settled">已结算</span>'
       : (hasResult ? '<span class="badge-settled" style="color:#f59e0b;border-color:#f59e0b">已出结果</span>' : '');
-    const adminBtn = S.user?.is_admin
+    const adminBtn = S.user
       ? `<button class="admin-btn" onclick="openAdminModal(${m.id}, event)">录入</button>`
       : '';
 
@@ -401,7 +398,7 @@ async function savePred(matchId) {
 // ── Admin ──────────────────────────────────────────────────────────────────
 function openAdminModal(matchId, e) {
   e.stopPropagation();
-  if (!S.user?.is_admin) return;
+  if (!S.user) return;
   const match = S.dayData?.matches.find(m => m.id === matchId);
   if (!match) return;
   S.adminMatchId = matchId;
