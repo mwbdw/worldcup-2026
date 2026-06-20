@@ -1,7 +1,10 @@
+
 #!/usr/bin/env python3
 """2026美加墨世界杯比分预测网站"""
 
 import os
+import time
+import threading
 from functools import wraps
 from flask import Flask, request, session, jsonify, send_from_directory
 from sqlalchemy import create_engine, text
@@ -581,9 +584,19 @@ def api_admin_clear():
     return jsonify(ok=True)
 
 
+def _bg_sync():
+    """后台线程：每 60 秒自动同步一次真实比分，无需用户手动触发。"""
+    while True:
+        time.sleep(60)
+        try:
+            sync_scores()
+        except Exception:
+            pass
+
 # ── 启动 ───────────────────────────────────────────────────────────────────
 if __name__ == '__main__':
     init_db()
+    threading.Thread(target=_bg_sync, daemon=True).start()
     print(f'\n🏆 2026美加墨世界杯预测系统已启动')
     print(f'   访问: http://localhost:{PORT}\n')
     print('账号: player1~4 / 1234  |  admin / admin888\n')
@@ -591,3 +604,4 @@ if __name__ == '__main__':
 else:
     # gunicorn 启动时也初始化数据库
     init_db()
+    threading.Thread(target=_bg_sync, daemon=True).start()

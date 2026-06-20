@@ -78,6 +78,7 @@ async function showApp() {
 
   await Promise.all([loadStandings(), loadMatchDays()]);
   await loadCurrentDay();
+  syncScores();
 }
 
 // ── Standings ──────────────────────────────────────────────────────────────
@@ -512,8 +513,8 @@ async function syncScores() {
 
 // Auto-refresh standings every 30 seconds
 setInterval(loadStandings, 30000);
-// Auto-sync scores every 5 minutes
-setInterval(syncScores, 5 * 60 * 1000);
+// Auto-sync scores every 90 seconds
+setInterval(syncScores, 90 * 1000);
 
 // ── Boot ───────────────────────────────────────────────────────────────────
 init();
