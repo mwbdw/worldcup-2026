@@ -209,6 +209,14 @@ body {
   font-size: 12px;
 }
 .nav-today:hover { background: var(--gold); color: #000; }
+.nav-sync {
+  background: rgba(34,197,94,.15);
+  border-color: var(--green);
+  color: var(--green);
+  font-size: 12px;
+}
+.nav-sync:hover { background: var(--green); color: #fff; }
+.nav-sync:disabled { opacity: .5; cursor: default; }
 
 /* ── Main Layout ───────────────────────────────────────────────── */
 #app {

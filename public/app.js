@@ -491,8 +491,29 @@ document.getElementById('admin-modal').addEventListener('click', function(e) {
   if (e.target === this) closeAdminModal();
 });
 
+// ── 自动同步比分 ───────────────────────────────────────────────────────────
+async function syncScores() {
+  const btn = document.getElementById('btn-sync');
+  if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+  try {
+    const r = await api('/api/sync-scores', { method: 'POST' });
+    if (r.updated > 0) {
+      toast(`🔄 同步到 ${r.updated} 场新结果，积分已更新`);
+      const data = await api(`/api/day/${S.currentDate}`);
+      S.dayData = data;
+      renderDay(data);
+      await loadStandings();
+    }
+  } catch (_) {}
+  finally {
+    if (btn) { btn.textContent = '🔄 同步'; btn.disabled = false; }
+  }
+}
+
 // Auto-refresh standings every 30 seconds
 setInterval(loadStandings, 30000);
+// Auto-sync scores every 5 minutes
+setInterval(syncScores, 5 * 60 * 1000);
 
 // ── Boot ───────────────────────────────────────────────────────────────────
 init();
