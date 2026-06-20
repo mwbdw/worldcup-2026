@@ -223,7 +223,7 @@ MATCHES_SEED = [
 EN_TO_CN = {
     'Mexico': '墨西哥', 'South Africa': '南非',
     'South Korea': '韩国', 'Czech Republic': '捷克', 'Czechia': '捷克',
-    'Canada': '加拿大', 'Bosnia and Herzegovina': '波黑',
+    'Canada': '加拿大', 'Bosnia and Herzegovina': '波黑', 'Bosnia-Herzegovina': '波黑',
     'United States': '美国', 'USA': '美国',
     'Paraguay': '巴拉圭',
     'Qatar': '卡塔尔', 'Switzerland': '瑞士',
@@ -251,26 +251,32 @@ EN_TO_CN = {
     'Ghana': '加纳', 'Panama': '巴拿马',
 }
 
-WC_API = 'https://worldcup26.ir/get/games'
+ESPN_API = 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=20260612-20260719'
 
 def sync_scores():
-    """从 worldcup26.ir 拉取实时比分，自动更新未结算的比赛。返回更新场数。"""
+    """从 ESPN 拉取实时比分，自动更新未结算的比赛。返回更新场数。"""
     try:
-        resp = http.get(WC_API, timeout=10)
-        games = resp.json().get('games', [])
+        resp = http.get(ESPN_API, timeout=15)
+        events = resp.json().get('events', [])
     except Exception:
         return 0
 
     updated = 0
-    for g in games:
-        if g.get('finished') != 'TRUE':
+    for e in events:
+        comp = e['competitions'][0]
+        if not comp['status']['type'].get('completed'):
             continue
-        home_cn = EN_TO_CN.get(g.get('home_team_name_en', ''))
-        away_cn = EN_TO_CN.get(g.get('away_team_name_en', ''))
+        competitors = comp['competitors']
+        home_c = next((x for x in competitors if x['homeAway'] == 'home'), None)
+        away_c = next((x for x in competitors if x['homeAway'] == 'away'), None)
+        if not home_c or not away_c:
+            continue
+        home_cn = EN_TO_CN.get(home_c['team']['displayName'])
+        away_cn = EN_TO_CN.get(away_c['team']['displayName'])
         if not home_cn or not away_cn:
             continue
         try:
-            h, a = int(g['home_score']), int(g['away_score'])
+            h, a = int(home_c['score']), int(away_c['score'])
         except (ValueError, TypeError):
             continue
         match = fetch_one(
